@@ -63,7 +63,7 @@ These modules need to sync with production database:
 
 | # | Module | README File | Description |
 |---|--------|-------------|-------------|
-| 01 | LMS | [00_LMS_Integration_README.md](00_LMS_Integration_README.md) | Learning Management System |
+| 01 | LMS | [00_LMS_Integration_README.md](01_LMS_Integration_README.md) | Learning Management System |
 | 02 | Award and Scholarship | [02_Award_Scholarship_Integration_README.md](02_Award_Scholarship_Integration_README.md) | Scholarships, awards, financial aid |
 | 03 | Department | [03_Department_Integration_README.md](03_Department_Integration_README.md) | Department management |
 | 04 | Other Academic Procedures | [04_Other_Academic_Procedure_Integration_README.md](04_Other_Academic_Procedure_Integration_README.md) | Additional academic workflows |
