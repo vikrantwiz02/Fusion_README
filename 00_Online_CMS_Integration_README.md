@@ -1,5 +1,15 @@
 # Online CMS Module - Integration Guide
 
+**What this module is:** The Online CMS (Course Management System) module was designed for online learning features. However, in production, only the Student_grades table is actively used - it stores all student course grades.
+
+**Why it exists:** Student grades are fundamental to academic records. Every course a student takes has a grade. This table is the source of truth for student academic performance - used for transcripts, eligibility checks, backlog verification, and academic standing.
+
+**Why integration is needed:** Multiple modules need grade data. Placement checks if students have backlogs (grade='F'). Scholarships verify academic performance. Dashboards display grade summaries. All these modules query Student_grades rather than maintaining separate grade records.
+
+**Key tables:** Student_grades (only production table - other online_cms tables are not used)
+
+---
+
 ## Module Overview
 
 The `online_cms` module contains the Student Grades table which is the only production-relevant table from this module.
@@ -51,14 +61,14 @@ from applications.online_cms.models import Student_grades
 
 ```python
 # Get all grades for a student
-Student_grades.objects.filter(roll_no='2021BCS001').order_by('year', 'semester')
+Student_grades.objects.filter(roll_no='21BCS001').order_by('year', 'semester')
 
 # Get verified grades only
-Student_grades.objects.filter(roll_no='2021BCS001', verified=True)
+Student_grades.objects.filter(roll_no='21BCS001', verified=True)
 
 # Get grades for a specific semester
 Student_grades.objects.filter(
-    roll_no='2021BCS001',
+    roll_no='21BCS001',
     semester=3,
     academic_year='2022-23'
 )
@@ -75,7 +85,7 @@ Student_grades.objects.filter(batch=2021, verified=True)
 
 # Count failed courses (backlogs)
 Student_grades.objects.filter(
-    roll_no='2021BCS001',
+    roll_no='21BCS001',
     grade='F',
     verified=True
 ).count()

@@ -1,5 +1,15 @@
 # System Security Module - Integration Guide
 
+**What this module is:** The System Security module will manage authentication, authorization, access control lists, security policies, threat monitoring, and compliance.
+
+**Why we need to build this:** ERP systems contain sensitive data - grades, finances, personal info. Currently security is basic. This module will enforce security policies, implement role-based access control, detect unauthorized access, and ensure compliance.
+
+**Why integration is needed:** Security spans ALL modules. Access control checks user roles (from ExtraInfo). Audit logs track who accessed what data. The module monitors all API endpoints and database access across Fusion.
+
+**Key dependencies:** Django User model, ExtraInfo, ALL modules (for access control)
+
+---
+
 ## Module Overview
 Manages security policies, access controls, threat monitoring, and compliance.
 

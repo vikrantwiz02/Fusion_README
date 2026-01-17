@@ -1,5 +1,15 @@
 # Internal Audit Module - Integration Guide
 
+**What this module is:** The Internal Audit module will manage compliance audits, process reviews, audit scheduling, findings tracking, and corrective action monitoring.
+
+**Why we need to build this:** Institutions need internal controls but currently audits are conducted manually with findings tracked in documents. This module will provide structured audit scheduling, digital findings management, and corrective action tracking.
+
+**Why integration is needed:** Audits examine data from ALL modules - finance records, academic processes, inventory. Auditors and auditees are employees (ExtraInfo). Department audits link to DepartmentInfo. The module reads across the entire ERP for compliance checks.
+
+**Key dependencies:** ExtraInfo, DepartmentInfo, ALL modules (for audit data)
+
+---
+
 ## Module Overview
 Manages internal audits, compliance checks, and audit reports.
 

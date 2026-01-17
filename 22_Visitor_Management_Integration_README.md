@@ -1,5 +1,15 @@
 # Visitor Management Module - Integration Guide
 
+**What this module is:** The Visitor Management module will handle campus visitor registration, gate passes, entry/exit tracking, host verification, and visitor logs.
+
+**Why we need to build this:** Campus security requires visitor tracking but currently it's manual - visitors sign a register, hosts are called for verification. This module will provide digital visitor registration, automated host notification, and real-time entry/exit tracking.
+
+**Why integration is needed:** Hosts are faculty/staff (from ExtraInfo/Faculty/Staff). Visitors may visit specific departments (DepartmentInfo). The module needs to verify host identity and organizational affiliation from production tables.
+
+**Key dependencies:** ExtraInfo, Faculty, Staff, DepartmentInfo
+
+---
+
 ## Module Overview
 Manages visitor registration, gate passes, and visitor tracking.
 

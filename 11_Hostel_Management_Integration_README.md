@@ -1,5 +1,15 @@
 # Hostel Management Module - Integration Guide
 
+**What this module is:** The Hostel Management module will handle student accommodation - room allocation, hostel transfers, leave requests, visitor entry, complaints, and hostel administration.
+
+**Why we need to build this:** Residential students need hostel management. Currently room allocation is manual, leave requests are on paper. This module will provide automated room allocation based on batch/programme/gender, digital leave requests, and warden dashboards.
+
+**Why integration is needed:** Hostel residents are students (from Student table). Room allocation considers batch and programme (from programme_curriculum). Student's current hostel info is stored in academic_information. The module will query core tables for student identity and academic information.
+
+**Key dependencies:** Student, Batch, ExtraInfo, Dues (for hostel dues)
+
+---
+
 ## Module Overview
 The Hostel Management module handles student hostel allocation, room management, mess assignments, leave requests, complaints, and all hostel-related administrative functions.
 

@@ -1,5 +1,15 @@
 # Visitor Hostel Module - Integration Guide
 
+**What this module is:** The Visitor Hostel module will manage the institute's guest house - room bookings, visitor registration, billing, and accommodation for official guests, conference attendees, and visiting faculty.
+
+**Why we need to build this:** Institutes host visitors who need accommodation. Currently booking is via phone/email, room availability is checked manually. This module will provide online room booking, automated availability checks, and digital billing.
+
+**Why integration is needed:** Bookings are made by institute members (ExtraInfo/Faculty/Staff) for their guests. The host's identity and department need verification. Some bookings may be charged to project accounts (RSPC). The module needs organizational data from core modules.
+
+**Key dependencies:** ExtraInfo, Faculty, Staff, Discipline
+
+---
+
 ## Module Overview
 The Visitor Hostel module manages guest accommodation booking, room allocation, billing, and visitor registration for the institute's guest house facilities.
 

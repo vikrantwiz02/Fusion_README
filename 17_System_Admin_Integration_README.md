@@ -1,5 +1,15 @@
 # System Administration Module - Integration Guide
 
+**What this module is:** The System Administration module will manage user accounts, role assignments, permissions, system configurations, access controls, audit logs, and overall system settings.
+
+**Why we need to build this:** Fusion has many modules and user types but currently user management is scattered. This module will provide centralized account creation, role assignment (student/faculty/admin), permission management, and system configuration.
+
+**Why integration is needed:** System Admin controls ALL other modules. It assigns roles based on user type (Student/Faculty/Staff from globals). It configures module-specific settings. It needs access to all identity tables to manage user accounts and permissions.
+
+**Key dependencies:** ExtraInfo, Student, Faculty, Staff, all module tables (for permissions)
+
+---
+
 ## Module Overview
 The System Administration module manages user accounts, role assignments, system configurations, access controls, audit logs, and overall system settings across all Fusion modules.
 

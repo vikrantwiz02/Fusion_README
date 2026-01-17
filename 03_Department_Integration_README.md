@@ -1,5 +1,15 @@
 # Department Module - Integration Guide
 
+**What this module is:** The Department module will handle department-level operations - managing faculty within a department, department announcements, research coordination, curriculum oversight, and department-specific student interactions.
+
+**Why we need to build this:** Each academic department (CSE, ECE, ME, etc.) has administrative needs but currently HODs lack a unified view of their domain. This module will provide department-scoped views - their students, faculty workload, course offerings, and research activities in one place.
+
+**Why integration is needed:** Department data comes from core modules. Students belong to batches which belong to disciplines (departments). Faculty teach courses. Course instructors are assigned per curriculum. All this data exists in programme_curriculum and academic_information - the Department module will query these rather than duplicating.
+
+**Key dependencies:** Discipline, Batch, Student, Course, CourseInstructor, Faculty
+
+---
+
 ## Module Overview
 The Department module manages department-specific operations including faculty management, department announcements, research activities, department meetings, curriculum oversight, and student-faculty interactions at the department level.
 

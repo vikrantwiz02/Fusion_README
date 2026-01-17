@@ -1,5 +1,15 @@
 # Placement Cell Module - Integration Guide
 
+**What this module is:** The Placement Cell module will manage campus recruitment - company registrations, job postings, student placement profiles, application tracking, interview scheduling, offer management, and placement statistics.
+
+**Why we need to build this:** Campus placements are crucial for students but currently the process is fragmented - companies register via email, students submit profiles on paper, eligibility is checked manually. This module will digitize the entire placement process, automating eligibility checks against academic records.
+
+**Why integration is needed:** Placement must verify student identity (from Student), check batch/discipline (from programme_curriculum), verify backlog status (from Student_grades), and get contact details (from ExtraInfo). Without production data, eligibility cannot be automated.
+
+**Key dependencies:** Student, Batch, Discipline, Programme, Student_grades, ExtraInfo
+
+---
+
 ## Module Overview
 The Placement Cell module manages campus recruitment activities, company registrations, job postings, student profiles, application tracking, interview scheduling, and placement statistics.
 

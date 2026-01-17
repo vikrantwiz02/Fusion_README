@@ -1,5 +1,15 @@
 # Complaint Management Module - Integration Guide
 
+**What this module is:** The Complaint Management module will handle grievance redressal - complaint registration, categorization (academic/hostel/mess/infrastructure), assignment to handlers, tracking, resolution, and feedback collection.
+
+**Why we need to build this:** Students and staff face issues daily - hostel problems, academic grievances, infrastructure complaints. Currently complaints are verbal or via scattered emails with no tracking. This module will provide structured complaint registration, automatic routing, and resolution tracking.
+
+**Why integration is needed:** Complainants are students (Student) or employees (ExtraInfo/Staff). Complaints are routed to departments (DepartmentInfo) or specific authorities. The module needs identity data to know who is complaining and who should resolve it.
+
+**Key dependencies:** Student, ExtraInfo, Faculty, Staff, Batch, Discipline
+
+---
+
 ## Module Overview
 The Complaint Management module handles grievance registration, tracking, resolution, and feedback for various complaint categories across the institute - including academic, hostel, mess, infrastructure, and administrative complaints.
 

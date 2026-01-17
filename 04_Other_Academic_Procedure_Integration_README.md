@@ -1,5 +1,15 @@
 # Other Academic Procedure Module - Integration Guide
 
+**What this module is:** The Other Academic Procedure module will handle miscellaneous academic requests that don't fit into core registration - bonafide certificates, thesis topic approval, assistantship claims, branch change applications, no-dues certificates, and special permissions.
+
+**Why we need to build this:** Beyond course registration, students need various academic services. Currently bonafide certificates require paper applications, thesis approvals are tracked manually. This module will automate these workflows - digital applications, automatic verification, and faster processing.
+
+**Why integration is needed:** Every request requires student verification. Branch change needs to check current batch, target batch availability, and semester. Thesis approval needs supervisor (Faculty) information. Assistantship needs to verify student status. No-dues needs to check Dues table. All data comes from core modules.
+
+**Key dependencies:** Student, Batch, Faculty, Dues, BranchChange
+
+---
+
 ## Module Overview
 The Other Academic Procedure module handles academic processes not covered by core registration, including bonafide certificates, thesis management, assistantship claims, branch changes, dues management, and special academic requests.
 

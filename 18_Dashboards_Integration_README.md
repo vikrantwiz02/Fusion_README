@@ -1,5 +1,15 @@
 # Dashboards Module - Integration Guide
 
+**What this module is:** The Dashboards module will provide role-based summary views - students see their courses and grades, faculty see their advisees and classes, admins see analytics and metrics.
+
+**Why we need to build this:** Users need a personalized landing page. A student wants to see their courses, dues, notifications at a glance. A faculty wants their classes and pending approvals. Currently there's no unified dashboard. This module will aggregate data from all modules into role-based views.
+
+**Why integration is needed:** Dashboards READ from ALL production modules. Student dashboards need course_registration, Student_grades, Dues. Faculty dashboards need thesis supervision, department info. It's the ultimate consumer of all production tables.
+
+**Key dependencies:** ALL production tables (Student, course_registration, Student_grades, Dues, ExtraInfo, etc.)
+
+---
+
 ## Module Overview
 The Dashboards module provides role-based dashboards aggregating data from all Fusion modules, offering real-time analytics, key metrics, notifications, and quick actions for different user types (students, faculty, staff, administrators).
 

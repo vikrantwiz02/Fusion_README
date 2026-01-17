@@ -1,5 +1,15 @@
 # Gymkhana Module - Integration Guide
 
+**What this module is:** The Gymkhana module will manage student extracurricular life - clubs (technical, cultural, sports), societies, events, budgets, inventory, elections for student council, and activity registrations.
+
+**Why we need to build this:** Student life extends beyond academics but currently club management is manual - member lists on paper, budgets tracked in spreadsheets, event registrations via forms. This module will provide digital club management, automated elections, and centralized event coordination.
+
+**Why integration is needed:** Club members are students (from Student table). Faculty advisors link to Faculty table. Election eligibility may require academic standing checks. The module needs identity data from production tables to know who can join what.
+
+**Key dependencies:** Student, Batch, ExtraInfo, Faculty
+
+---
+
 ## Module Overview
 The Gymkhana module manages student clubs, societies, events, budgets, inventory, elections, and all extracurricular activities under the Gymkhana umbrella.
 

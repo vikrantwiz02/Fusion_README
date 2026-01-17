@@ -1,5 +1,15 @@
 # Patent Management Module - Integration Guide
 
+**What this module is:** The Patent Management module will track intellectual property - invention disclosures, patent applications, filing status, inventor details, and technology transfer.
+
+**Why we need to build this:** Research institutes generate IP but currently patent tracking is manual. Faculty disclose inventions on paper, filing status is tracked in spreadsheets. This module will provide digital invention disclosure, application tracking, and IP portfolio management.
+
+**Why integration is needed:** Inventors are faculty (Faculty) or students (Student) identified by ExtraInfo. Patents are filed from departments (DepartmentInfo). The module needs identity and organizational data from globals to track who invented what.
+
+**Key dependencies:** ExtraInfo, Faculty, Student, DepartmentInfo
+
+---
+
 ## Module Overview
 Manages intellectual property, patent applications, and technology transfer.
 

@@ -1,5 +1,15 @@
 # Academic Procedures Module - Integration Guide
 
+**What this module is:** The Academic Procedures module handles all student academic transactions - course registration, fee payments, dues tracking, and branch change requests.
+
+**Why it exists:** Academic operations are transactional. When a student registers for courses, pays fees, or applies for branch change, these are recorded as transactions. This module tracks the "what happened" of a student's academic journey - which courses they registered for, when they paid fees, what dues they owe.
+
+**Why integration is needed:** Other modules need to check academic status. Placement needs to verify if a student has backlogs (from course_registration). Hostel/Mess need to check dues. Scholarships need to verify fee payment status. All these modules query this module's tables rather than maintaining separate records.
+
+**Key tables:** course_registration, InitialRegistration, FinalRegistration, FeePayments, Dues, BranchChange
+
+---
+
 ## Module Overview
 
 The `academic_procedures` module handles student academic operations including course registration, fee payments, dues management, branch changes, and verification processes.

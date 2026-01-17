@@ -1,5 +1,15 @@
 # IWD (Institute Works Department) Module - Integration Guide
 
+**What this module is:** The IWD (Institute Works Department) module will manage infrastructure - construction projects, maintenance requests, electrical/civil works, contractor management, work orders, and building/asset management.
+
+**Why we need to build this:** Institute infrastructure needs constant maintenance and development but currently work requests are manual, tracking is on paper, contractor management is fragmented. This module will provide digital work order management, project tracking, and maintenance request workflows.
+
+**Why integration is needed:** Work requests come from departments (DepartmentInfo) and employees (ExtraInfo/Faculty/Staff). Approvals flow through organizational hierarchy. The module needs organizational structure from globals to route requests correctly.
+
+**Key dependencies:** ExtraInfo, Faculty, Staff, Discipline, DepartmentInfo
+
+---
+
 ## Module Overview
 The IWD module manages all civil works, electrical works, construction projects, maintenance, contractor management, and infrastructure development activities of the institute.
 

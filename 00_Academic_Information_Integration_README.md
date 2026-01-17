@@ -1,5 +1,14 @@
 # Academic Information Module - Integration Guide
 
+**What this module is:** The Academic Information module stores the master student data - every enrolled student's basic academic information including their roll number, batch, programme, category, and hostel details.
+
+**Why it exists:** The Student table is the central identity for all student-related operations in Fusion. Every module that deals with students (Placement, Hostel, Mess, Library, Scholarships) needs to identify and reference students. This module provides that single source of student identity.
+
+**Why integration is needed:** Rather than each module storing duplicate student information, they all link to this module's Student table. When a student's batch changes or they move hostel rooms, it updates in one place and all modules see the updated data.
+
+**Key tables:** Student (linked to ExtraInfo for user details)
+
+---
 
 ## Tables (Sync with Production)
 
@@ -47,7 +56,7 @@ from applications.online_cms.models import Student_grades  # For grades
 ```python
 # Get student by roll number
 from applications.globals.models import ExtraInfo
-extrainfo = ExtraInfo.objects.get(id='2021BCS001')
+extrainfo = ExtraInfo.objects.get(id='21BCS001')
 student = Student.objects.get(id=extrainfo)
 
 # Get student by user
@@ -61,7 +70,7 @@ Student.objects.filter(category='SC')
 
 # Get grades for a student (from online_cms)
 from applications.online_cms.models import Student_grades
-Student_grades.objects.filter(roll_no='2021BCS001', verified=True)
+Student_grades.objects.filter(roll_no='21BCS001', verified=True)
 ```
 
 ### Foreign Key Reference Pattern

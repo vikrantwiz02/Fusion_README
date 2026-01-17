@@ -1,198 +1,200 @@
-# LMS (Lecture Management System) - Integration Guide
+# LMS (Learning Management System) - Integration Guide
+
+**What this module is:** The LMS (Learning Management System) will handle online course delivery - managing lecture materials, uploading resources, tracking attendance, conducting quizzes, handling assignments, and facilitating discussions.
+
+**Why we need to build this:** Currently there's no integrated digital learning platform. Faculty share materials via email or external drives. Assignments are submitted physically. Quizzes happen on paper. This module will provide a unified online classroom - content sharing, assignment submission, quiz conducting, and progress tracking.
+
+**Why integration is needed:** LMS must know which student is enrolled in which course (from course_registration), who teaches which course (from CourseInstructor), and student identity (from Student table). Without this production data, LMS cannot show the right content to the right user.
+
+**Key dependencies:** Student, course_registration, Courses, CourseInstructor, ExtraInfo
+
+---
 
 ## Module Overview
 
-The LMS module manages lecture/course content delivery, including course materials, attendance tracking, quizzes, assignments, and student evaluations.
-
-Note: From this module, only the `Student_grades` table is used in production. Other tables (attendance, quizzes, assignments, forums, etc.) are NOT actively used in production.
+The LMS module will provide a complete online learning platform for the institute. It will enable faculty to share course materials, conduct online quizzes, manage assignments, and track student engagement.
 
 ---
 
-## Tables (Sync with Production)
+## Features to Build
 
-### Table: `online_cms_student_grades` (PRODUCTION TABLE)
+### 1. Course Content Management
+- Upload lecture materials (PDFs, videos, presentations)
+- Organize content by modules/topics
+- Track which students viewed content
 
-This is the PRIMARY table for storing student course grades in Fusion ERP.
+### 2. Assignment Management
+- Faculty creates assignments with deadlines
+- Students submit assignments online
+- Faculty grades and provides feedback
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | integer | Primary Key |
-| `semester` | integer | Semester number (1-8) |
-| `year` | integer | Calendar year |
-| `roll_no` | text | Student roll number |
-| `grade` | text | Grade (A, A-, B+, B, B-, C+, C, C-, D, F) |
-| `batch` | integer | Batch year |
-| `course_id_id` | integer | Course reference |
-| `reSubmit` | boolean | Resubmission flag |
-| `remarks` | character varying | Remarks |
-| `verified` | boolean | Grade verification status |
-| `academic_year` | character varying | Academic year (2024-25) |
-| `semester_type` | character varying | Odd/Even/Summer |
+### 3. Quiz/Assessment System
+- Create quizzes with various question types
+- Auto-grading for objective questions
+- Time-limited assessments
 
-```sql
-SELECT * FROM public.online_cms_student_grades ORDER BY id ASC
-```
+### 4. Attendance Tracking
+- Mark attendance digitally
+- Track participation in online sessions
+- Generate attendance reports
 
-### Model Definition
-
-```python
-class Student_grades(models.Model):
-    """
-    PRIMARY GRADES TABLE: online_cms_student_grades
-    
-    This is the ONLY production-relevant table from online_cms module.
-    All other tables (attendance, quizzes, etc.) are NOT in production use.
-    """
-    course_id = ForeignKey(Courses, on_delete=CASCADE)
-    semester = IntegerField(default=1)
-    year = IntegerField(default=2016)
-    roll_no = TextField(max_length=2000)
-    grade = TextField(max_length=2000)
-    batch = IntegerField(default=2021)
-    reSubmit = BooleanField(default=False)
-    remarks = CharField(max_length=255, null=True)
-    verified = BooleanField(default=False)
-    academic_year = CharField(max_length=9, null=True)
-    semester_type = CharField(max_length=20)
-    
-    class Meta:
-        db_table = 'online_cms_student_grades'
-```
+### 5. Discussion Forums
+- Course-wise discussion boards
+- Q&A between students and faculty
+- Announcements
 
 ---
 
-## Dependencies - Tables to Sync With
+## Core Dependencies - Tables to Sync With
 
 ### From `programme_curriculum` Module
 
 | Table | Key Columns | Usage |
 |-------|-------------|-------|
-| `Course` | id, code, name, credit | Course reference for grades |
+| `Course` | id, code, name | Course reference for LMS content |
+| `CourseInstructor` | course_id, instructor_id | Identify who teaches what |
 
 ### From `academic_information` Module
 
 | Table | Key Columns | Usage |
 |-------|-------------|-------|
-| `Student` | id (roll_no), batch_id | Student identification |
+| `Student` | id, batch_id | Student identification |
+
+### From `academic_procedures` Module
+
+| Table | Key Columns | Usage |
+|-------|-------------|-------|
+| `course_registration` | student_id, course_id | Who is enrolled in which course |
 
 ### From `globals` Module
 
 | Table | Key Columns | Usage |
 |-------|-------------|-------|
 | `ExtraInfo` | id, user, user_type | User identification |
+| `Faculty` | id, extra_info_id | Faculty identification |
 
 ---
 
-## Integration Functions
+## Proposed Models (To Be Built)
 
-### Get Student Grades
-
+### Course Content
 ```python
-from applications.online_cms.models import Student_grades
+class LMSModule(models.Model):
+    """Content modules within a course"""
+    course = ForeignKey(Courses, on_delete=CASCADE)
+    title = CharField(max_length=255)
+    description = TextField(null=True)
+    order = IntegerField()
+    is_visible = BooleanField(default=True)
 
-def get_student_grades(roll_no):
-    """Get all grades for a student by roll number"""
-    return Student_grades.objects.filter(
-        roll_no=roll_no
-    ).order_by('year', 'semester')
+class LMSContent(models.Model):
+    """Individual content items (files, videos, etc.)"""
+    module = ForeignKey(LMSModule, on_delete=CASCADE)
+    title = CharField(max_length=255)
+    content_type = CharField(max_length=50)  # pdf, video, link
+    file = FileField(null=True)
+    url = URLField(null=True)
+    uploaded_by = ForeignKey(ExtraInfo, on_delete=CASCADE)
+    uploaded_at = DateTimeField(auto_now_add=True)
 ```
 
-### Get Verified Grades Only
-
+### Assignments
 ```python
-def get_verified_grades(roll_no):
-    """Get only verified grades for a student"""
-    return Student_grades.objects.filter(
-        roll_no=roll_no, 
-        verified=True
-    ).order_by('year', 'semester')
+class LMSAssignment(models.Model):
+    """Assignment definition"""
+    course = ForeignKey(Courses, on_delete=CASCADE)
+    title = CharField(max_length=255)
+    description = TextField()
+    due_date = DateTimeField()
+    max_marks = IntegerField()
+    created_by = ForeignKey(ExtraInfo, on_delete=CASCADE)
+
+class LMSSubmission(models.Model):
+    """Student assignment submissions"""
+    assignment = ForeignKey(LMSAssignment, on_delete=CASCADE)
+    student = ForeignKey(Student, on_delete=CASCADE)
+    submitted_at = DateTimeField(auto_now_add=True)
+    file = FileField()
+    marks = IntegerField(null=True)
+    feedback = TextField(null=True)
 ```
 
-### Get Course Grades
-
+### Quizzes
 ```python
-def get_course_grades(course_id, semester, year):
-    """Get all grades for a course in a semester"""
-    return Student_grades.objects.filter(
-        course_id=course_id, 
-        semester=semester, 
-        year=year
-    )
-```
+class LMSQuiz(models.Model):
+    """Quiz definition"""
+    course = ForeignKey(Courses, on_delete=CASCADE)
+    title = CharField(max_length=255)
+    duration_minutes = IntegerField()
+    start_time = DateTimeField()
+    end_time = DateTimeField()
+    max_marks = IntegerField()
 
-### Get Semester Grades
-
-```python
-def get_semester_grades(roll_no, semester, academic_year):
-    """Get grades for a specific semester"""
-    return Student_grades.objects.filter(
-        roll_no=roll_no,
-        semester=semester,
-        academic_year=academic_year
-    )
+class LMSQuestion(models.Model):
+    """Quiz questions"""
+    quiz = ForeignKey(LMSQuiz, on_delete=CASCADE)
+    question_text = TextField()
+    question_type = CharField(max_length=20)  # mcq, short, long
+    marks = IntegerField()
+    options = JSONField(null=True)  # For MCQ
+    correct_answer = TextField(null=True)
 ```
 
 ---
 
-## Common Queries
+## Integration Functions (To Be Implemented)
 
-### Get All Grades for a Batch
+### Get Enrolled Students for a Course
 ```python
-Student_grades.objects.filter(batch=2021, verified=True)
+from applications.academic_procedures.models import course_registration
+
+def get_enrolled_students(course_id, semester_id):
+    """Get all students enrolled in a course"""
+    return course_registration.objects.filter(
+        course_id=course_id,
+        semester_id=semester_id
+    ).select_related('student_id')
 ```
 
-### Get Grades by Semester Type
+### Get Courses for a Faculty
 ```python
-Student_grades.objects.filter(
-    roll_no='21BCS001',
-    semester_type='Odd'
-)
+from applications.programme_curriculum.models import CourseInstructor
+
+def get_faculty_courses(faculty_id, semester_id):
+    """Get all courses taught by a faculty"""
+    return CourseInstructor.objects.filter(
+        instructor_id=faculty_id,
+        semester=semester_id
+    ).select_related('course_id')
 ```
 
-### Count Students per Grade in a Course
+### Get Student's Courses
 ```python
-from django.db.models import Count
-
-Student_grades.objects.filter(
-    course_id=course_id,
-    semester=semester,
-    year=year
-).values('grade').annotate(count=Count('grade'))
+def get_student_courses(student_id, semester_id):
+    """Get all courses a student is enrolled in"""
+    return course_registration.objects.filter(
+        student_id=student_id,
+        semester_id=semester_id
+    ).select_related('course_id')
 ```
 
 ---
 
 ## Integration with Other Modules
 
-| Module | How to Use Grades |
+| Module | Integration Point |
 |--------|-------------------|
-| Placement Cell | Filter students by CGPA calculated from grades |
-| Scholarships | Verify academic performance for eligibility |
-| Academic Procedures | Check prerequisites, backlog status |
-| Examination | Grade submission and verification |
-| Dashboards | Display student performance |
+| Academic Procedures | Read course_registration to know enrollments |
+| Programme Curriculum | Read Course and CourseInstructor data |
+| Globals | Read ExtraInfo, Faculty for user identification |
+| Notifications | Send notifications for new content, deadlines |
+| Dashboards | Show pending assignments, upcoming quizzes |
 
 ---
 
 ## Important Notes
 
-1. Only `Student_grades` is used in production - Ignore other online_cms tables
-2. Roll number is stored as text - Use exact string matching
-3. Grades must be verified - Check `verified=True` for official grades
-4. This table stores individual course grades - Not aggregate scores
-
----
-
-## Tables NOT in Production Use
-
-The following tables exist in online_cms but are NOT actively used:
-
-- Modules, CourseDocuments
-- AttendanceFiles, Attendance
-- Quiz, QuestionBank, Question, QuizResult
-- Assignment, StudentAssignment
-- Forum, ForumReply
-- GradingScheme
-- Topics, Courses (local copy)
-
-Do not integrate with these tables - they are legacy/unused.
+1. **This module is NOT in production** - To be built from scratch
+2. **Grades are separate** - Grade storage is in Online CMS module (00_Online_CMS), not LMS
+3. **Read-only from production** - LMS reads from course_registration, does not write to it
+4. **User identity** - Always use ExtraInfo/Student/Faculty from globals for user identification

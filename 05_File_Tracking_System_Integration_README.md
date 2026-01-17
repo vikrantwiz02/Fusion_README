@@ -1,5 +1,15 @@
 # File Tracking System (FTS) - Integration Guide
 
+**What this module is:** The File Tracking System will manage document workflow across the institute - tracking files as they move between offices, managing approvals, and maintaining audit trails for administrative documents.
+
+**Why we need to build this:** In an institute, files (leave applications, purchase requests, student petitions) move through multiple offices. Currently file location is often unknown causing delays. This module will provide real-time file tracking, ensuring no file gets lost in bureaucracy.
+
+**Why integration is needed:** Files are routed to departments (Discipline), sent by employees (ExtraInfo/Faculty/Staff), and may concern students (Student). The FTS needs to know organizational structure to route files correctly and identify senders/receivers. All identity and structure data comes from core modules.
+
+**Key dependencies:** Discipline (departments), ExtraInfo (users), Faculty, Staff, DepartmentInfo
+
+---
+
 ## Module Overview
 The File Tracking System manages document workflow, file routing, approvals, and tracking across departments. It tracks the movement of physical and digital files through various offices and maintains audit trails.
 

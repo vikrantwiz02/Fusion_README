@@ -1,5 +1,15 @@
 # Mess Management Module - Integration Guide
 
+**What this module is:** The Mess Management module will handle dining operations - menu planning, student mess registration, meal tracking, billing, rebates for missed meals, feedback collection, and mess worker management.
+
+**Why we need to build this:** Hostelers eat in messes. Currently mess registration is manual, rebate requests on paper. This module will digitize mess operations - online registration, automated billing, digital rebate workflows.
+
+**Why integration is needed:** Mess members are students (from Student table). Mess dues sync with the Dues table in academic_procedures. When students apply for rebates during hostel leave, it links to Hostel module. Student identity and dues data come from core modules.
+
+**Key dependencies:** Student, Batch, ExtraInfo, Dues (mess_due field)
+
+---
+
 ## Module Overview
 The Mess Management module handles mess menu planning, student mess registration, meal tracking, billing, feedback, rebates, and all mess-related administrative functions.
 

@@ -1,5 +1,15 @@
 # Primary Health Center (PHC) Module - Integration Guide
 
+**What this module is:** The PHC module will manage the institute's health center - patient records, consultations, prescriptions, medical history, ambulance services, and health insurance claims for students and employees.
+
+**Why we need to build this:** Students and staff need healthcare services on campus. Currently medical records are paper-based, making history tracking difficult. This module will digitize health center operations - appointments, prescriptions, medical history.
+
+**Why integration is needed:** Patients are either students (from Student table) or employees (from ExtraInfo/Faculty/Staff). The PHC needs to identify patients, access their basic information (batch, department, contact details), and link medical records to the right person. All identity data comes from core modules.
+
+**Key dependencies:** Student, ExtraInfo, Faculty, Staff
+
+---
+
 ## Module Overview
 The Primary Health Center module manages student and employee health records, medical consultations, prescriptions, ambulance services, health insurance, and wellness programs.
 

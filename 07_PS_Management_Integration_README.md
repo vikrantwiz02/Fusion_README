@@ -1,5 +1,15 @@
 # P&S Management (Purchase and Store Management) Module - Integration Guide
 
+**What this module is:** The Purchase and Store Management module will handle procurement - purchase requests (indents), vendor management, purchase orders, goods receipt, inventory tracking, and store operations.
+
+**Why we need to build this:** Institutes purchase equipment, consumables, and services. Currently indents are paper-based, vendor records scattered. This module will digitize the entire procurement workflow - from indent to goods receipt - with proper approvals and inventory tracking.
+
+**Why integration is needed:** Purchase requests come from departments (Discipline) and are raised by employees (ExtraInfo/Faculty/Staff). Budget heads may be linked to projects (RSPC). Approvals route through organizational hierarchy. The module needs organizational structure data from core modules.
+
+**Key dependencies:** Discipline, ExtraInfo, Faculty, Staff, DepartmentInfo
+
+---
+
 ## Module Overview
 The Purchase and Store Management module handles procurement processes, inventory management, vendor management, purchase orders, goods receipt, and store operations for the institute.
 

@@ -1,5 +1,15 @@
 # Programme Curriculum Module - Integration Guide
 
+**What this module is:** The Programme Curriculum module is the foundational academic structure of Fusion ERP. It defines the academic hierarchy - what programmes exist (B.Tech, M.Tech, PhD), what disciplines/branches are offered (CSE, ECE, ME), which batches are active, and what courses are available.
+
+**Why it exists:** Every academic operation in the ERP needs to know the academic structure. When a student registers for courses, the system needs to know what courses exist. When generating a transcript, it needs curriculum information. This module is the single source of truth for all academic structure data.
+
+**Why integration is needed:** All other modules (Placement, Hostel, Mess, Scholarships, etc.) need to reference this data. Instead of each module maintaining its own copy of programmes and courses, they all reference this module's tables via Foreign Keys. This ensures consistency - if a course name changes, it changes everywhere.
+
+**Key tables:** Programme, Discipline, Batch, Course, Semester, CourseSlot, CourseInstructor
+
+---
+
 ## Module Overview
 
 The `programme_curriculum` module provides foundational academic structure data. This module syncs with production and other modules can reference these tables.

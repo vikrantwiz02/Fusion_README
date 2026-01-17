@@ -1,5 +1,15 @@
 # Backup & Archive System - Integration Guide
 
+**What this module is:** The Backup & Archive module will manage data backups, archival of old records, retention policies, and disaster recovery procedures.
+
+**Why we need to build this:** Data is critical but currently there's no systematic backup strategy. Graduated students' records need archival. Active data needs regular backups. This module will ensure data persistence, define retention policies, and enable disaster recovery.
+
+**Why integration is needed:** Backups touch ALL tables. Archival policies may differ by data type (student records kept longer than logs). The module needs to understand schema structure across all production modules to backup and restore correctly.
+
+**Key dependencies:** ALL tables (for backup/restore), system configuration
+
+---
+
 ## Module Overview
 Manages automated backups, data archival, retention policies, and disaster recovery.
 

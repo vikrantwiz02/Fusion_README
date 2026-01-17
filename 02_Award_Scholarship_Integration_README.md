@@ -1,5 +1,15 @@
 # Award and Scholarship Module - Integration Guide
 
+**What this module is:** The Award and Scholarship module will manage all financial aid and recognition programs - merit scholarships, need-based aid, government scholarships, sports awards, and academic excellence recognitions.
+
+**Why we need to build this:** Students receive various scholarships but currently eligibility is verified manually using spreadsheets. This module will automate the entire scholarship lifecycle - applications, eligibility checks against academic records, approvals, and disbursement tracking.
+
+**Why integration is needed:** Scholarship eligibility depends on data from core modules. Need to verify student's batch and programme (from programme_curriculum), check if they have backlogs (from Student_grades), verify fee payment status (from FeePayments), and check dues clearance (from Dues). Without integration, eligibility checks would be impossible.
+
+**Key dependencies:** Student, Batch, Programme, Student_grades, FeePayments, Dues
+
+---
+
 ## Module Overview
 The Award and Scholarship module manages student scholarships, awards, merit-based recognitions, financial aid, and fellowship programs within the institute.
 

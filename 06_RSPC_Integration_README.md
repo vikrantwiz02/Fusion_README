@@ -1,5 +1,15 @@
 # RSPC (Research, Sponsored Projects and Consultancy) Module - Integration Guide
 
+**What this module is:** The RSPC module will manage research activities - sponsored projects (funded research), consultancy services, patent filings, publications, and research funding applications.
+
+**Why we need to build this:** Faculty and students conduct research that needs tracking. Currently sponsored projects are managed in spreadsheets with budgets, timelines, and deliverables tracked manually. This module will provide unified project lifecycle management for the RSPC cell.
+
+**Why integration is needed:** Research is conducted by Faculty (from globals), may involve PhD students (from Student), belongs to disciplines/departments (from Discipline), and funding often requires student/faculty verification. All identity and organizational data comes from core modules.
+
+**Key dependencies:** Faculty, Student, Discipline, ExtraInfo
+
+---
+
 ## Module Overview
 The RSPC module manages research activities, sponsored projects, consultancy services, patent filings, publications tracking, and research funding for faculty and students.
 

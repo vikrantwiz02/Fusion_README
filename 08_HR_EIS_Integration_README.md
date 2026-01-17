@@ -1,5 +1,15 @@
 # HR Module (EIS - Employee Information System) - Integration Guide
 
+**What this module is:** The HR/EIS module will manage employee lifecycle - from joining to retirement. It will track service records, qualifications, performance appraisals, training, promotions, leave, and all employee-related administration.
+
+**Why we need to build this:** An institute has faculty, staff, and administrators. Currently HR processes are paper-based - leave applications, appraisals, service records. This module will provide digital employee management with self-service for leave applications and service record viewing.
+
+**Why integration is needed:** Employees exist in globals (ExtraInfo, Faculty, Staff). They belong to departments (Discipline). Faculty teach courses (CourseInstructor). All this data already exists in core modules - HR/EIS will extend it with service-specific information rather than duplicating basic identity data.
+
+**Key dependencies:** ExtraInfo, Faculty, Staff, Discipline, CourseInstructor
+
+---
+
 ## Module Overview
 The HR/EIS module manages employee records, service history, performance appraisals, training, promotions, and all employee-related administrative functions.
 
