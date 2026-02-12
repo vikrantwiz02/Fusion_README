@@ -208,11 +208,3 @@ The following tables exist in online_cms but are NOT actively used:
 
 **Do not integrate with these tables.**
 
----
-
-## Important Notes
-
-1. Only `Student_grades` is used in production - ignore other online_cms tables
-2. Roll number is stored as text - use exact string matching
-3. Always check `verified=True` for official grades
-4. This table stores individual course grades, not aggregate scores

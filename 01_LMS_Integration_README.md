@@ -190,11 +190,3 @@ def get_student_courses(student_id, semester_id):
 | Notifications | Send notifications for new content, deadlines |
 | Dashboards | Show pending assignments, upcoming quizzes |
 
----
-
-## Important Notes
-
-1. **This module is NOT in production** - To be built from scratch
-2. **Grades are separate** - Grade storage is in Online CMS module (00_Online_CMS), not LMS
-3. **Read-only from production** - LMS reads from course_registration, does not write to it
-4. **User identity** - Always use ExtraInfo/Student/Faculty from globals for user identification
